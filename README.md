@@ -1,4 +1,4 @@
 MassAtLeeds.github.io
 =====================
 
-testing ground for MASS content served to the internet
+Testing ground for MASS content served to the internet: http://massatleeds.github.io/
