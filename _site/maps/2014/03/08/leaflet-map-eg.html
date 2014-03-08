@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+
+
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+   <title>defaultMB</title>
+   <!-- syntax highlighting CSS -->
+	<link href='http://fonts.googleapis.com/css?family=Averia+Sans+Libre' rel='stylesheet' type='text/css'>
+   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+</head>
+<body>
+  <div class="site">
+    <div class="title">
+      <a href="/">MASS</a>
+      <a class="extra" href="/">home</a>
+    </div>
+  
+    <div id="post">
+<p> <script src="https://raw.github.com/MassAtLeeds/RouteFactor/master/tr.js"></script></p>
+
+<div> <div id='map' style="position:absolute; top:0; bottom:0; width:60%; "></div>
+</div>
+
+
+
+
+<script>
+var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
+    .setView([53.8, -1.55], 13);
+    var gj = new L.geoJson(tr, {
+        
+       }).addTo(map);
+</script>
+
+
+<p>This was created via:</p>
+
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&#39;map&#39;</span> <span class="na">style=</span><span class="s">&quot;position:absolute; top:0; bottom:0; width:60%; &quot;</span><span class="nt">&gt;&lt;/div&gt;</span> 
+
+<span class="nt">&lt;script&gt;</span>
+<span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">mapbox</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">,</span> <span class="s1">&#39;examples.map-9ijuk24y&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">setView</span><span class="p">([</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mf">74.50</span><span class="p">],</span> <span class="mi">9</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+
+
+
+
+</div>
+
+  
+    <div class="footer">
+      <div class="contact">
+        <p>
+          MASS at Leeds<br />
+          A test website for web-based geocomputation<br />
+          mass@lists.leeds.ac.uk
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="http://github.com/MassAtLeeds">github.com/MassAtLeeds</a><br />
+          <a href="http://twitter.com/SoGLeeds/">twitter.com/SoGLeeds</a><br />
+        </p>
+      </div>
+    </div>
+  </div>
+  <a href="http://github.com/MassAtLeeds"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+</body>
+</html>
