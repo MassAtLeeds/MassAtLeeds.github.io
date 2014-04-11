@@ -1,5 +1,7 @@
 ---
-published: false
+title: Publishing with GitHub Pages
+published: true
+layout: postMB
 ---
 
 [GitHub](https://github.com/) is well known as a 'social coding' site integrated with the version management software [git](http://en.wikipedia.org/wiki/Git_(software)). It's user friendly user interface and low price (it's free!) have led to explosive growth in its use over the last few years. Now GitHub is the de facto home of some of the most exciting free software projects on the planet including [QGIS](https://github.com/qgis/QGIS) and the daddy of all open source software projects, [Linux](https://github.com/torvalds/linux).
