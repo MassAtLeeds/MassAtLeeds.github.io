@@ -105,10 +105,14 @@ Twitter's [streaming API](https://dev.twitter.com/docs/streaming-apis/parameters
 
 So here's where I've got to: the stream is supplying geolocated tweets in a Leeds-ish bounding box (-2.17, 53.52, -1.20, 53.96) and I'm doing a test keyword filter once it comes through locally. Testing just with "the "/"The ", [here's a sample screenshot](https://www.dropbox.com/s/sst6nzx9ewjvsez/Screenshot%202014-04-06%2018.38.22.png) of the output (with the keyword highlighted, makes it read a little odd...!)
 
+I've also used the excellent [Unfolding Maps](http://unfoldingmaps.org/) to get tweets' locations appearing live on a map of Leeds - here's a [screenshot of that](https://dl.dropboxusercontent.com/u/306562/pics/unfoldingmapLiveTweets.png).
+
 Here's a few things that might happen next:
 
 * This little chunk of java could be easily extended to harvest data. I'd envisage a config file with options for the bounding box and the keyword/tag search terms, as well as a maximum file size and maximum time to run the harvest. The output could just be a bog standard CSV, not sure if there's any need to keep it in JSON format, though could do that too.
-* The pretty/cool visualisation stuff is obviously far more important than any of this data analysis nonsense. So: come up with some options for how to produce a live visualisation, perhaps using the [http://unfoldingmaps.org/](unfolding maps) library (and the supplied geolocation field) or perhaps being a little more abstract. I wonder if SoG would let us display it on the foyer screen?
+* The pretty/cool visualisation stuff is obviously far more important than any of this data analysis nonsense. So: come up with some options for how to produce a live visualisation.
+
+I haven't yet made it very easy to run the code. There are only a couple of java classes to copy (Main and SimpleStream). You'll also need the [Processing 2](http://processing.org/), [Unfolding Maps](http://unfoldingmaps.org/) and [Twitter4J}(http://twitter4j.org/en/index.html) libraries. Finally, there's a hidden class that currently supplies the secret Twitter API keys (I'll let you google how to get set up with the Twitter API). Look in SimpleStream for the methods supplying the secret keys (they're commented with an explanation) - you'll just need to write a simple class to provide those strings. I'll get a .properties file set up soon to do all of this!
 
 ## Other options
 
