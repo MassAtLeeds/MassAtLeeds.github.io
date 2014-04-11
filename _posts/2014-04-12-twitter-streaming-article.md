@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: postMB
 title: Harvesting the Twitter 'firehose' with open source tools
 ---
 
