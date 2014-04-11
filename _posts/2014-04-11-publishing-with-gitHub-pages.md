@@ -10,7 +10,7 @@ Fewer people know that GitHub can also act as a free shared (as opposed to [dedi
 
 ## Creating the online repository
 
-GitHub is mostly accessed through the secure https:// hypertext address protocol, which is encrypted. However, when you put content into a special place in GitHub, it is served via the unencrypted and much more accessible http:// protocal.
+GitHub is mostly accessed through the secure https:// hypertext transfer protocol, which is encrypted. However, when you put content into a special place in GitHub, it is served via the unencrypted and much more accessible http:// protocol.
 
 ### username.github.io
 
