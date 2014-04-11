@@ -20,12 +20,14 @@ Now, anything that I put inside this repository is automatically published to th
 
 All GitHub pages are pre-processed by [Jekyll](http://en.wikipedia.org/wiki/Jekyll_%28software%29), a static website system. This is not the place to describe Jekyll: check out their excellent home page, tutorials and try it.
 
-To sum-up Jekyll, it allows you to build a website in the normal way with html or intelligently, using the [`_config.yml` file](https://github.com/MassAtLeeds/MassAtLeeds.github.io/blob/master/_config.yml) and markdown (.md) files. In fact, this post is [simply a .md file placed in MassAtLeeds.github.io](
+To sum-up Jekyll, it allows you to build a website in the normal way with html or intelligently, using the [`_config.yml` file](https://github.com/MassAtLeeds/MassAtLeeds.github.io/blob/master/_config.yml) and markdown (.md) files. In fact, this post is [simply a .md file placed in MassAtLeeds.github.io](https://github.com/MassAtLeeds/MassAtLeeds.github.io/blob/master/_posts/2014-04-11-publishing-with-gitHub-pages.md)!
 
+## prose.io
 
+Another useful thing about GitHub that not everyone knows is that it has a diverse plugin 'ecosystem'. Third parties can gain access your accout and do [useful things like create online mass-editable maps](http://robinlovelace.net/maps/2013/11/16/mapping-for-the-masses.html) via geojson.io. Another useful plugin which makes adding content to GitHub pages even easier, is [prose.io](http://prose.io/). This, and the entire processes of publishing collaborative content using GitHub is described in the video below.
 
-## Jekyll - a static website builder
+<iframe width="420" height="315" src="//www.youtube.com/embed/Dv2ZUvH-pho" frameborder="0" allowfullscreen></iframe>
 
+## Conclusion
 
-
-Enter text in [Markdown](http://daringfireball.net/projects/markdown/). Use the toolbar above, or click the **?** button for formatting help.
+Git frequently amazes new users with its capabilities. GitHub is the online extension of this that can provide what feels like superpowers to the collaborative coder. Clearly this is useful to programmers and makes it easier than ever to contribute to and produce digital content available to anyone. It also has great potential to help academics, sometimes accused of sitting in [ivory towers](http://www.theguardian.com/commentisfree/2012/may/07/academics-cant-answer-criticism-analysis), engage with wider online communities and make their work and reproducible results available to the public.
