@@ -42,7 +42,7 @@ pip install tweepy
 Now that it is installed, how does it work?
 Well Python must *import* the Tweepy package before it is used.
 A critical stage is to find and fill-in your Twitter API
-user details into the `streaming.py` example file in the Tweety
+user details into the `streaming.py` example file in the Tweepy
 GitHub repository:
 
 ```{}
