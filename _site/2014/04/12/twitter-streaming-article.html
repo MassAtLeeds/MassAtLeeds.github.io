@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+
+
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+   <title>Harvesting the Twitter 'firehose' with open source tools</title>
+   <!-- syntax highlighting CSS -->
+	<link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+</head>
+<body>
+  <div class="site">
+    <div class="title">
+      <a href="/">MASS</a>
+      <a class="extra" href="/">home</a>
+    </div>
+  
+    <div id="post">
+<p>Unlike Facebook, Twitter is admirably transparent and open about its data.
+Its <a href="https://twitter.com/tos?PHPSESSID=57a411f70b1964a2bc78b82638ba1843">Terms of Service</a>
+state that what you put up there is instantly publicly available and contain the
+'tip' that "What you say on Twitter may be viewed all around the world instantly. You are what you Tweet!"
+This allows the company to offer open access methods
+for people to tap into the 'live stream' and use the information for 3rd party applications.</p>
+
+<p>This openness and the growing interest in Tweets as a useful
+data source about peoples' perceptions of the world has led to a mass of 3rd party
+applications to help access this vast stream of data. Many of these are
+open source and most take advantage of either the
+<a href="https://dev.twitter.com/docs/api">Twitter REST API</a> (which is
+severely <a href="https://dev.twitter.com/docs/rate-limiting/1.1">rate limited</a>) or the
+<a href="https://dev.twitter.com/docs/api/streaming">Twitter Streaming API</a>,
+which allows more information to be taken in, based on either a search term
+or a bounding box - a spatial filter.</p>
+
+<p>In this post we demonstrate a few methods of accessing this rich Twitter data.
+The majority are open source and many are evolving thanks largely to the social
+coding site GitHub. In the final section we demonstrate some interesting potential
+applications of harvesting Twitter data, with an illustrated example of Tweets about
+road safety.</p>
+
+<h2>Tweepy</h2>
+
+<p>The first method we use is <a href="https://github.com/tweepy/tweepy">Tweepy</a>,
+a Python library for accessing the Twitter APIs (I'm not sure if
+this is can access only the REST or Streaming API, or both).
+Installation is easy. Once Python's package manager is installed
+(via <code>sudo apt-get install python-pip</code> in Debian/Ubuntu systems),
+installation of Tweepy and all its dependencies is a doddle:</p>
+
+<pre><code class="{python}">pip install tweepy
+</code></pre>
+
+<p>Now that it is installed, how does it work?
+Well Python must <em>import</em> the Tweepy package before it is used.
+A critical stage is to find and fill-in your Twitter API
+user details into the <code>streaming.py</code> example file in the Tweepy
+GitHub repository:</p>
+
+<pre><code class="{}">consumer_key=""
+consumer_secret=""
+access_token=""
+access_token_secret=""
+</code></pre>
+
+<p>All four codes must be entered correctly between the quotation "" symbols.
+Then the rest of the <code>streaming.py</code> file can be altered for your needs
+A basic example is provided <a href="https://github.com/Robinlovelace/tweepy/blob/master/streaming-leeds.py">here</a>,
+which contains the following line of code to filter the tweets by geographical
+location:</p>
+
+<pre><code class="{}">    stream.filter(locations=[-2.17,53.52,-1.20,53.96])
+</code></pre>
+
+<p>This instructs the program to only stream those tweets with are
+within the bounding box, which set as the extent of West Yorksire,
+in lat/long coordinates. If the file is saved in the working directory
+of a Linux terminal, it can be run simply by typing the following:</p>
+
+<pre><code class="{python}">python streaming-leeds.py
+</code></pre>
+
+<p>To see this in action, take a look at the stream of Tweets illustrated
+in <a href="http://youtu.be/fqrVFReL7dY">this video</a>.</p>
+
+<iframe width="420" height="315" src="//www.youtube.com/embed/fqrVFReL7dY" frameborder="0" allowfullscreen></iframe>
+
+
+<p>Not that in the first stream, a mass of unreadable information was provided directly:
+this is the '[firehose]', the raw mass of data eminating from Twitter.
+The second stream used the following line of code to extract only the user name
+and the text for each tweet (see
+<a href="http://runnable.com/Us9rrMiTWf9bAAW3/how-to-stream-data-from-twitter-with-tweepy-for-python">here</a> for the complete script):</p>
+
+<pre><code class="{python}">print '@%s: %s' % (decoded['user']['screen_name'], decoded['text'].encode('ascii', 'ignore'))
+</code></pre>
+
+<p>Now, saving this stream of information from the terminal output is quite simple
+in Linux: just type <code>bash | tee /path/to/logfile</code> before running the streaming
+command and all output will be sent to the logfile in text format.
+Remember to type <code>exit</code> again in the terminal when you have finished streaming
+and the data will be saved. After that, the challenge is to extract useful
+information from that mass of raw data.</p>
+
+<h2>Extracting the data into other formats</h2>
+
+<h2>Doing it in Java (Dan)</h2>
+
+<p>I've had a play with <a href="http://twitter4j.org">Twitter4J</a> - at the moment by combining it with the <a href="http://processing.org/">Processing library</a> as I initially thought I'd just be working on visualising. Which I will - but it's become apparent the Java approach might be useful for some other twitter-related things. <a href="http://davidcrowley.me/?p=435">David Crowley</a>'s chunk of code got me started quickly with the streaming API, with a few little alterations (in particular, supplying the secret API codes via a local class so no-one can hijack my twitter account!)</p>
+
+<p>Twitter's <a href="https://dev.twitter.com/docs/streaming-apis/parameters">streaming API</a> allows queries that include a location bounding box (picking up on tweets that have included geolocation) - but it can't do an "AND" search for keywords as well:</p>
+
+<blockquote><p>"Bounding boxes do not act as filters for other filter parameters. For example track=twitter&amp;locations=-122.75,36.8,-121.75,37.8 would match any tweets containing the term Twitter (even non-geo tweets) OR coming from the San Francisco area."</p></blockquote>
+
+<p>So here's where I've got to: the stream is supplying geolocated tweets in a Leeds-ish bounding box (-2.17, 53.52, -1.20, 53.96) and I'm doing a test keyword filter once it comes through locally. Testing just with "the "/"The ", <a href="https://www.dropbox.com/s/sst6nzx9ewjvsez/Screenshot%202014-04-06%2018.38.22.png">here's a sample screenshot</a> of the output (with the keyword highlighted, makes it read a little odd...!)</p>
+
+<p>I've also used the excellent <a href="http://unfoldingmaps.org/">Unfolding Maps</a> to get tweets' locations appearing live on a map of Leeds - here's a <a href="https://dl.dropboxusercontent.com/u/306562/pics/unfoldingmapLiveTweets.png">screenshot of that</a>.</p>
+
+<p>Here's a few things that might happen next:</p>
+
+<ul>
+<li>This little chunk of java could be easily extended to harvest data. I'd envisage a config file with options for the bounding box and the keyword/tag search terms, as well as a maximum file size and maximum time to run the harvest. The output could just be a bog standard CSV, not sure if there's any need to keep it in JSON format, though could do that too.</li>
+<li>The pretty/cool visualisation stuff is obviously far more important than any of this data analysis nonsense. So: come up with some options for how to produce a live visualisation.</li>
+</ul>
+
+
+<p>I haven't yet made it very easy to run the code. There are only a couple of java classes to copy (Main and SimpleStream). You'll also need the <a href="http://processing.org/">Processing 2</a>, <a href="http://unfoldingmaps.org/">Unfolding Maps</a> and <a href="http://twitter4j.org/en/index.html">Twitter4J</a> libraries. Finally, there's a hidden class that currently supplies the secret Twitter API keys (I'll let you google how to get set up with the Twitter API). Look in SimpleStream for the methods supplying the secret keys (they're commented with an explanation) - you'll just need to write a simple class to provide those strings. I'll get a .properties file set up soon to do all of this!</p>
+
+<h2>Other options</h2>
+
+<p>To install the python-twitter plugin ( http://code.google.com/p/python-twitter/ )</p>
+
+</div>
+
+  
+    <div class="footer">
+      <div class="contact">
+        <p>
+          MASS at Leeds<br />
+          A test website for web-based geocomputation<br />
+          mass@lists.leeds.ac.uk
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="http://github.com/MassAtLeeds">github.com/MassAtLeeds</a><br />
+          <a href="http://twitter.com/SoGLeeds/">twitter.com/SoGLeeds</a><br />
+        </p>
+      </div>
+    </div>
+  </div>
+  <!--<a href="http://github.com/MassAtLeeds"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>-->
+</body>
+</html>
