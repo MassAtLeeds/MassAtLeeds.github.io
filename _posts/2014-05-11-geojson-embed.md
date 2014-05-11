@@ -1,6 +1,6 @@
 ---
 title: Embedding GitHub hosted geojson files
-layout: post
+layout: postMB
 ---
 
 The map below illustrates a quick way of embedding github-served geo data online: via geojson.io:
